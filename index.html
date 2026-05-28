@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timex Digitals | Save Time. Multiply Success.</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero-section {
+      position: relative; z-index: 2;
+      text-align: center;
+      padding: 6rem 2rem 4.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .hero-h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.2rem;
+      animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .2s both,
+                 shimmer 3.5s linear 1.2s infinite;
+    }
+    .hero-p {
+      font-size: .92rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .35s both;
+    }
+    .hero-btns {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .5s both;
+    }
+    .divider { border: none; border-top: 0.5px solid rgba(56,189,248,.1); }
+    .promise-section {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+    .promise-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 700; text-align: center;
+      margin-bottom: .6rem; letter-spacing: -.02em;
+      animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .15s both;
+    }
+    .promise-sub {
+      text-align: center; font-size: .88rem; font-weight: 300;
+      max-width: 520px; margin: 0 auto 2.5rem;
+      animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .25s both;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .promise-card {
+      animation: floatA 5s ease-in-out infinite;
+    }
+    .promise-card:last-child {
+      animation: floatB 5s ease-in-out 1.2s infinite;
+    }
+  </style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<header>
+  <div class="nav-inner">
+    <a class="logo-link" href="index.html">
+      <div class="logo-text">TIMEX<span>DIGITALS</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active" data-key="nav_home">Home</a></li>
+        <li><a href="services.html" data-key="nav_services">Services</a></li>
+        <li><a href="contact.html" data-key="nav_contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('am')">አማ</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero-section">
+    <span class="page-tag" data-key="hero_tag">Save time. Multiply success.</span>
+    <h1 class="shimmer-title hero-h1" data-key="hero_h1">We Design, Develop, and Scale High-Growth Brands.</h1>
+    <p class="hero-p muted" data-key="hero_p">Timex Digitals handles the heavy lifting. From pixel-perfect engineering and stunning visual assets to hyper-targeted advertising, we construct the growth engine your enterprise requires.</p>
+    <div class="hero-btns">
+      <a href="contact.html" class="btn-main" data-key="hero_cta1">Book a Strategy Call</a>
+      <a href="services.html" class="btn-sec" data-key="hero_cta2">Explore Services</a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="promise-section">
+    <h2 class="promise-title" data-key="promise_title">The Blueprint of Our Promise</h2>
+    <p class="promise-sub muted" data-key="promise_sub">How we convert our core methodology into predictable financial results for your company.</p>
+    <div class="cards-grid">
+      <div class="s-card promise-card">
+        <div class="s-card-icon">⏳</div>
+        <div class="s-card-title" data-key="card1_title">Save You Time</div>
+        <p class="s-card-body" data-key="card1_body">Stop playing coordinator with fragmented freelance networks or sluggish traditional firms. We oversee your entire engineering infrastructure, creative pipelines, and multi-channel campaigns under one managed umbrella.</p>
+        <div class="s-bar-wrap">
+          <div class="s-bar-label"><span data-key="card1_bar">Time recovered</span><span>88%</span></div>
+          <div class="s-bar-track"><div class="s-bar-fill" style="width:88%;animation-delay:.5s;"></div></div>
+        </div>
+      </div>
+      <div class="s-card promise-card">
+        <div class="s-card-icon">📈</div>
+        <div class="s-card-title" data-key="card2_title">Multiply Your Success</div>
+        <p class="s-card-body" data-key="card2_body">We swear off vanity metrics. Every line of code, every creative canvas, and every budget configuration is measured strictly against high-converting revenue outcomes.</p>
+        <div class="s-bar-wrap">
+          <div class="s-bar-label"><span data-key="card2_bar">Revenue impact</span><span>94%</span></div>
+          <div class="s-bar-track"><div class="s-bar-fill" style="width:94%;animation-delay:.7s;background:#4ade80;"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p data-key="footer">&copy; 2026 Timex Digitals. All Rights Reserved. Strategic Solutions Engine.</p>
+</footer>
+
+<script src="lang.js"></script>
+</body>
+</html>

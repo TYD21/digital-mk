@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure a Consultation | Timex Digitals</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-wrap {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-info { animation: fadeUp .55s cubic-bezier(.22,.9,.36,1) .1s both; }
+    .page-h1 { font-size: 2rem; margin-bottom: 1rem; }
+    .page-sub { font-size: .83rem; line-height: 1.75; margin-bottom: 2rem; animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .25s both; }
+
+    .trust-items { display: flex; flex-direction: column; gap: 14px; }
+    .trust-item  { display: flex; align-items: flex-start; gap: 12px; animation: fadeUp .5s cubic-bezier(.22,.9,.36,1) both; }
+    .trust-item:nth-child(1){ animation-delay:.3s; }
+    .trust-item:nth-child(2){ animation-delay:.42s; }
+    .trust-item:nth-child(3){ animation-delay:.54s; }
+    .trust-item:nth-child(4){ animation-delay:.66s; }
+
+    .trust-dot {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(56,189,248,.12); border: 0.5px solid rgba(56,189,248,.3);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .trust-dot svg { width: 14px; height: 14px; stroke: #38bdf8; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .trust-text strong { display: block; font-size: .8rem; font-weight: 500; color: #f0f6ff; margin-bottom: 2px; }
+    .trust-text span   { font-size: .75rem; color: #8ba7c8; }
+    .phone-link { color: #38bdf8 !important; font-weight: 500; text-decoration: none; transition: opacity .2s; }
+    .phone-link:hover { opacity: .75; }
+
+    .form-card {
+      background: #111d33; border-radius: 16px;
+      border: 0.5px solid rgba(56,189,248,.15);
+      padding: 2.2rem;
+      animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .2s both;
+      transition: border-color .3s;
+    }
+    .form-card:focus-within { border-color: rgba(56,189,248,.35); }
+
+    .field { position: relative; margin-bottom: 1.3rem; }
+    .field label { display: block; font-size: .72rem; font-weight: 500; color: #8ba7c8; letter-spacing: .05em; margin-bottom: 6px; transition: color .2s; }
+    .field:focus-within label { color: #38bdf8; }
+
+    .field input, .field select, .field textarea {
+      width: 100%; background: #0d1526;
+      border: 0.5px solid rgba(56,189,248,.18);
+      color: #f0f6ff; border-radius: 8px;
+      padding: .68rem .9rem;
+      font-family: 'DM Sans', sans-serif; font-size: .83rem; font-weight: 300;
+      transition: border-color .2s, box-shadow .2s; outline: none;
+      appearance: none; -webkit-appearance: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56,189,248,.12);
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #4a6480; }
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234a6480' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .9rem center;
+      padding-right: 2.2rem; cursor: pointer;
+    }
+    .field select option { background: #111d33; color: #f0f6ff; }
+    .field textarea { resize: vertical; min-height: 110px; }
+
+    .valid-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); opacity: 0; transition: opacity .25s; pointer-events: none; }
+    .valid-icon svg { width: 14px; height: 14px; stroke: #4ade80; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .field.valid .valid-icon { opacity: 1; }
+    .field.valid input, .field.valid select, .field.valid textarea { border-color: rgba(74,222,128,.4); }
+
+    .char-count { font-size: .65rem; color: #4a6480; text-align: right; margin-top: 4px; transition: color .2s; }
+    .char-count.warn { color: #fbbf24; }
+
+    .submit-btn {
+      width: 100%; font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 500;
+      padding: .75rem 1.5rem; border-radius: 8px; border: none; cursor: pointer;
+      background: #38bdf8; color: #020c16; line-height: 1;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); animation: pulseRing 1.4s ease infinite; }
+    .submit-btn:active { transform: scale(.98); }
+    .submit-btn:disabled { background: #172240; color: #4a6480; cursor: not-allowed; animation: none; transform: none; }
+
+    .spin-ring { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(2,12,22,.3); border-top-color: #020c16; animation: spin .7s linear infinite; display: none; }
+
+    .success-state { display: none; text-align: center; padding: 2rem 1rem; }
+    .success-check {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(74,222,128,.12); border: 0.5px solid rgba(74,222,128,.4);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;
+      animation: checkPop .5s cubic-bezier(.22,.9,.36,1) both;
+    }
+    .success-check svg { width: 22px; height: 22px; stroke: #4ade80; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-h { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; animation: successSlide .4s ease .1s both; opacity: 0; }
+    .success-p { font-size: .8rem; color: #8ba7c8; animation: successSlide .4s ease .2s both; opacity: 0; }
+  </style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<header>
+  <div class="nav-inner">
+    <a class="logo-link" href="index.html">
+      <div class="logo-text">TIMEX<span>DIGITALS</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html" data-key="nav_home">Home</a></li>
+        <li><a href="services.html" data-key="nav_services">Services</a></li>
+        <li><a href="contact.html" class="active" data-key="nav_contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('am')">አማ</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="contact-wrap">
+
+    <!-- LEFT: info panel -->
+    <div class="contact-info">
+      <span class="page-tag" data-key="ct_tag">Let's talk</span>
+      <h1 class="shimmer-title page-h1" data-key="ct_h1">Initiate Your Growth Engine</h1>
+      <p class="page-sub muted" data-key="ct_sub">Let's eliminate resource inefficiencies and scale what matters. Submit your project scope below to secure a strategic overview slot.</p>
+
+      <div class="trust-items">
+        <!-- Phone -->
+        <div class="trust-item">
+          <div class="trust-dot">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong data-key="ct_phone_label">Call us directly</strong>
+            <!-- ✏️  REPLACE the number below with your real phone number -->
+            <span><a href="tel:+251911234567" class="phone-link">+251 91 123 4567</a></span>
+          </div>
+        </div>
+        <!-- 24h response -->
+        <div class="trust-item">
+          <div class="trust-dot">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong data-key="ct_trust1_h">24-hour response</strong>
+            <span data-key="ct_trust1_p">Every submission reviewed same business day</span>
+          </div>
+        </div>
+        <!-- Confidential -->
+        <div class="trust-item">
+          <div class="trust-dot">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong data-key="ct_trust2_h">100% confidential</strong>
+            <span data-key="ct_trust2_p">Your project details are never shared</span>
+          </div>
+        </div>
+        <!-- Free audit -->
+        <div class="trust-item">
+          <div class="trust-dot">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong data-key="ct_trust3_h">Free strategic audit</strong>
+            <span data-key="ct_trust3_p">First session is a no-cost discovery call</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="form-card" id="formCard">
+      <div id="formBody">
+        <div class="field" id="f-name">
+          <label for="client-name" data-key="f_name">Full corporate name</label>
+          <input type="text" id="client-name" placeholder="John Doe (Company Name)" autocomplete="name">
+          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <div class="field" id="f-email">
+          <label for="client-email" data-key="f_email">Business email address</label>
+          <input type="email" id="client-email" placeholder="name@yourcompany.com" autocomplete="email">
+          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <div class="field" id="f-service">
+          <label for="service-type" data-key="f_service">Primary requirement</label>
+          <select id="service-type">
+            <option value="" data-key="f_svc_placeholder">Select an operational pillar…</option>
+            <option value="web-dev"    data-key="f_svc1">Web Development & Infrastructure</option>
+            <option value="branding"   data-key="f_svc2">Graphic Design & Brand Architecture</option>
+            <option value="marketing"  data-key="f_svc3">Ads Campaigns & Digital Optimization</option>
+            <option value="consulting" data-key="f_svc4">Enterprise Business Consulting</option>
+          </select>
+          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <div class="field" id="f-msg">
+          <label for="project-notes" data-key="f_msg">Project context / scope outline</label>
+          <textarea id="project-notes" placeholder="Tell us briefly about your growth target or bottlenecks…"></textarea>
+          <div class="char-count" id="charCount">0 / 500</div>
+          <div class="valid-icon" style="top:20px;transform:none;"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()">
+          <span id="btnText" data-key="f_submit">Secure my strategy slot</span>
+          <div class="spin-ring" id="spinner"></div>
+          <svg id="btnIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+
+      <div class="success-state" id="successState">
+        <div class="success-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="success-h" data-key="success_h">You're booked in.</div>
+        <p class="success-p" data-key="success_p">We've received your scope outline and will be in touch within 24 hours to confirm your strategy session.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p data-key="footer">&copy; 2026 Timex Digitals. All Rights Reserved. Strategic Solutions Engine.</p>
+</footer>
+
+<script>
+  const nameEl    = document.getElementById('client-name');
+  const emailEl   = document.getElementById('client-email');
+  const serviceEl = document.getElementById('service-type');
+  const msgEl     = document.getElementById('project-notes');
+  const charCount = document.getElementById('charCount');
+
+  function setValid(id, ok) {
+    document.getElementById(id).classList.toggle('valid', ok);
+  }
+
+  nameEl.addEventListener('input',    () => setValid('f-name',    nameEl.value.trim().length > 2));
+  emailEl.addEventListener('input',   () => setValid('f-email',   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)));
+  serviceEl.addEventListener('change',() => setValid('f-service', serviceEl.value !== ''));
+  msgEl.addEventListener('input', () => {
+    const l = msgEl.value.length;
+    charCount.textContent = l + ' / 500';
+    charCount.classList.toggle('warn', l > 400);
+    setValid('f-msg', l > 20);
+    if (l > 500) msgEl.value = msgEl.value.slice(0, 500);
+  });
+
+  function handleSubmit() {
+    const ok = nameEl.value.trim().length > 2
+      && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)
+      && serviceEl.value !== ''
+      && msgEl.value.length > 20;
+
+    if (!ok) {
+      if (nameEl.value.trim().length <= 2)                          nameEl.focus();
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) emailEl.focus();
+      else if (!serviceEl.value)                                    serviceEl.focus();
+      else                                                          msgEl.focus();
+      return;
+    }
+
+    const btn  = document.getElementById('submitBtn');
+    const txt  = document.getElementById('btnText');
+    const spin = document.getElementById('spinner');
+    const icon = document.getElementById('btnIcon');
+
+    btn.disabled        = true;
+    txt.textContent     = 'Submitting…';
+    spin.style.display  = 'block';
+    icon.style.display  = 'none';
+
+    setTimeout(() => {
+      document.getElementById('formBody').style.display  = 'none';
+      document.getElementById('successState').style.display = 'block';
+    }, 1600);
+  }
+</script>
+<script src="lang.js"></script>
+</body>
+</html>

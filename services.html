@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services | Timex Digitals</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .services-hero {
+      position: relative; z-index: 2;
+      text-align: center;
+      padding: 4.5rem 2rem 3rem;
+      max-width: 700px; margin: 0 auto;
+    }
+    .page-h1 { font-size: 2.3rem; margin-bottom: 1rem; }
+    .page-sub {
+      font-size: .88rem;
+      animation: fadeUp .6s cubic-bezier(.22,.9,.36,1) .35s both;
+    }
+    .services-grid {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+      padding: 1rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .s-card:nth-child(1) { animation: floatA 5s ease-in-out 0s   infinite, fadeUp .55s cubic-bezier(.22,.9,.36,1) .10s both; }
+    .s-card:nth-child(2) { animation: floatB 5s ease-in-out .9s  infinite, fadeUp .55s cubic-bezier(.22,.9,.36,1) .22s both; }
+    .s-card:nth-child(3) { animation: floatA 5s ease-in-out 1.8s infinite, fadeUp .55s cubic-bezier(.22,.9,.36,1) .34s both; }
+    .s-card:nth-child(4) { animation: floatB 5s ease-in-out 2.7s infinite, fadeUp .55s cubic-bezier(.22,.9,.36,1) .46s both; }
+  </style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<header>
+  <div class="nav-inner">
+    <a class="logo-link" href="index.html">
+      <div class="logo-text">TIMEX<span>DIGITALS</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html" data-key="nav_home">Home</a></li>
+        <li><a href="services.html" class="active" data-key="nav_services">Services</a></li>
+        <li><a href="contact.html" data-key="nav_contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('am')">አማ</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="services-hero">
+    <span class="page-tag" data-key="svc_tag">What we do</span>
+    <h1 class="shimmer-title page-h1" data-key="svc_h1">Our Operational Pillars</h1>
+    <p class="page-sub muted" data-key="svc_sub">Comprehensive premium agency capabilities configured to free up internal overhead and deliver hyper-scaled growth outcomes.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="s-card">
+      <div class="s-card-num">01</div>
+      <div class="s-card-icon">🌐</div>
+      <div class="s-card-title" data-key="s1_title">Web Development</div>
+      <p class="s-card-body" data-key="s1_body">Engineered for high performance. We construct blazing-fast, secure, and mobile-optimized custom architectures tailored to maximize conversion funnels and backend business operations.</p>
+      <div class="s-bar-wrap">
+        <div class="s-bar-label"><span data-key="s1_bar">Performance score</span><span>97</span></div>
+        <div class="s-bar-track"><div class="s-bar-fill" style="width:97%;animation-delay:.5s;"></div></div>
+      </div>
+      <div class="s-tags"><span class="s-tag">React</span><span class="s-tag">Next.js</span><span class="s-tag">Node</span><span class="s-tag">CMS</span></div>
+    </div>
+
+    <div class="s-card">
+      <div class="s-card-num">02</div>
+      <div class="s-card-icon">🎨</div>
+      <div class="s-card-title" data-key="s2_title">Graphic Design & Branding</div>
+      <p class="s-card-body" data-key="s2_body">Command immediate market attention. We produce unified corporate visual identity guidelines, premium logos, UI frameworks, and digital asset packages that forge instantly credible enterprise brands.</p>
+      <div class="s-bar-wrap">
+        <div class="s-bar-label"><span data-key="s2_bar">Brand recall lift</span><span>91</span></div>
+        <div class="s-bar-track"><div class="s-bar-fill" style="width:91%;animation-delay:.65s;background:#a78bfa;"></div></div>
+      </div>
+      <div class="s-tags"><span class="s-tag">Identity</span><span class="s-tag">UI/UX</span><span class="s-tag">Motion</span><span class="s-tag">Print</span></div>
+    </div>
+
+    <div class="s-card">
+      <div class="s-card-num">03</div>
+      <div class="s-card-icon">📈</div>
+      <div class="s-card-title" data-key="s3_title">Ads & Performance Marketing</div>
+      <p class="s-card-body" data-key="s3_body">Data-driven performance management. Our experts coordinate, deploy, and iteratively refine hyper-targeted paid media layers — Meta, Google, LinkedIn PPC — engineered for maximized pipeline generation.</p>
+      <div class="s-bar-wrap">
+        <div class="s-bar-label"><span data-key="s3_bar">Avg ROAS</span><span>88</span></div>
+        <div class="s-bar-track"><div class="s-bar-fill" style="width:88%;animation-delay:.8s;background:#4ade80;"></div></div>
+      </div>
+      <div class="s-tags"><span class="s-tag">Meta</span><span class="s-tag">Google</span><span class="s-tag">LinkedIn</span><span class="s-tag">PPC</span></div>
+    </div>
+
+    <div class="s-card">
+      <div class="s-card-num">04</div>
+      <div class="s-card-icon">💼</div>
+      <div class="s-card-title" data-key="s4_title">Business Consulting</div>
+      <p class="s-card-body" data-key="s4_body">Structural scaling architecture. We partner alongside operations executives and founders to evaluate competitive positioning maps, refine conversion metrics, and design long-term scaling parameters.</p>
+      <div class="s-bar-wrap">
+        <div class="s-bar-label"><span data-key="s4_bar">Growth outcomes</span><span>94</span></div>
+        <div class="s-bar-track"><div class="s-bar-fill" style="width:94%;animation-delay:.95s;background:#fbbf24;"></div></div>
+      </div>
+      <div class="s-tags"><span class="s-tag">Strategy</span><span class="s-tag">Ops</span><span class="s-tag">Scaling</span><span class="s-tag">GTM</span></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p data-key="footer">&copy; 2026 Timex Digitals. All Rights Reserved. Strategic Solutions Engine.</p>
+</footer>
+
+<script src="lang.js"></script>
+</body>
+</html>
