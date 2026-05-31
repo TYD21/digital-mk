@@ -183,45 +183,48 @@
       </div>
     </div>
 
-    <!-- RIGHT: form -->
-    <div class="form-card" id="formCard">
+   <div class="form-card" id="formCard">
       <form id="agencyForm" action="https://formspree.io/f/xvzyngew" method="POST">
-      <div id="formBody">
-        <div class="field" id="f-name">
-          <label for="client-name" data-key="f_name">Full corporate name</label>
-          <input type="text" id="client-name" placeholder="John Doe (Company Name)" autocomplete="name">
-          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div id="formBody">
+          
+          <div class="field" id="f-name">
+            <label for="client-name" data-key="f_name">Full corporate name</label>
+            <input type="text" id="client-name" name="name" placeholder="John Doe (Company Name)" autocomplete="name">
+            <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+          
+          <div class="field" id="f-email">
+            <label for="client-email" data-key="f_email">Business email address</label>
+            <input type="email" id="client-email" name="email" placeholder="name@yourcompany.com" autocomplete="email">
+            <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+          
+          <div class="field" id="f-service">
+            <label for="service-type" data-key="f_service">Primary requirement</label>
+            <select id="service-type" name="service">
+              <option value="" data-key="f_svc_placeholder">Select an operational pillar…</option>
+              <option value="web-dev"    data-key="f_svc1">Web Development & Infrastructure</option>
+              <option value="branding"   data-key="f_svc2">Graphic Design & Brand Architecture</option>
+              <option value="marketing"  data-key="f_svc3">Ads Campaigns & Digital Optimization</option>
+              <option value="consulting" data-key="f_svc4">Enterprise Business Consulting</option>
+            </select>
+            <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+          
+          <div class="field" id="f-msg">
+            <label for="project-notes" data-key="f_msg">Project context / scope outline</label>
+            <textarea id="project-notes" name="message" placeholder="Tell us briefly about your growth target or bottlenecks…"></textarea>
+            <div class="char-count" id="charCount">0 / 500</div>
+            <div class="valid-icon" style="top:20px;transform:none;"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          </div>
+          
+          <button class="submit-btn" id="submitBtn" type="submit">
+            <span id="btnText" data-key="f_submit">Secure my strategy slot</span>
+            <div class="spin-ring" id="spinner"></div>
+            <svg id="btnIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
         </div>
-        <div class="field" id="f-email">
-          <label for="client-email" data-key="f_email">Business email address</label>
-          <input type="email" id="client-email" placeholder="name@yourcompany.com" autocomplete="email">
-          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        </div>
-        <div class="field" id="f-service">
-          <label for="service-type" data-key="f_service">Primary requirement</label>
-          <select id="service-type">
-            <option value="" data-key="f_svc_placeholder">Select an operational pillar…</option>
-            <option value="web-dev"    data-key="f_svc1">Web Development & Infrastructure</option>
-            <option value="branding"   data-key="f_svc2">Graphic Design & Brand Architecture</option>
-            <option value="marketing"  data-key="f_svc3">Ads Campaigns & Digital Optimization</option>
-            <option value="consulting" data-key="f_svc4">Enterprise Business Consulting</option>
-          </select>
-          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        </div>
-        <div class="field" id="f-msg">
-          <label for="project-notes" data-key="f_msg">Project context / scope outline</label>
-          <textarea id="project-notes" placeholder="Tell us briefly about your growth target or bottlenecks…"></textarea>
-          <div class="char-count" id="charCount">0 / 500</div>
-          <div class="valid-icon" style="top:20px;transform:none;"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        </div>
-        <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()">
-          <span id="btnText" data-key="f_submit">Secure my strategy slot</span>
-          <div class="spin-ring" id="spinner"></div>
-          <svg id="btnIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-      </div>
-
-      <div class="success-state" id="successState">
+      </form> <div class="success-state" id="successState">
         <div class="success-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="success-h" data-key="success_h">You're booked in.</div>
         <p class="success-p" data-key="success_p">We've received your scope outline and will be in touch within 24 hours to confirm your strategy session.</p>
@@ -241,6 +244,7 @@
   const serviceEl = document.getElementById('service-type');
   const msgEl     = document.getElementById('project-notes');
   const charCount = document.getElementById('charCount');
+  const formEl    = document.getElementById('agencyForm');
 
   function setValid(id, ok) {
     document.getElementById(id).classList.toggle('valid', ok);
@@ -257,14 +261,17 @@
     if (l > 500) msgEl.value = msgEl.value.slice(0, 500);
   });
 
-  function handleSubmit() {
+  // FIX 7: Use an event listener to intercept the form submission properly
+  formEl.addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop standard page reloading
+
     const ok = nameEl.value.trim().length > 2
       && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)
       && serviceEl.value !== ''
       && msgEl.value.length > 20;
 
     if (!ok) {
-      if (nameEl.value.trim().length <= 2)                          nameEl.focus();
+      if (nameEl.value.trim().length <= 2)           nameEl.focus();
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) emailEl.focus();
       else if (!serviceEl.value)                                    serviceEl.focus();
       else                                                          msgEl.focus();
@@ -276,15 +283,42 @@
     const spin = document.getElementById('spinner');
     const icon = document.getElementById('btnIcon');
 
+    // Run UI animations instantly
     btn.disabled        = true;
     txt.textContent     = 'Submitting…';
     spin.style.display  = 'block';
     icon.style.display  = 'none';
 
-    setTimeout(() => {
-      document.getElementById('formBody').style.display  = 'none';
-      document.getElementById('successState').style.display = 'block';
-    }, 1600);
+    // FIX 8: Added the physical network delivery function (Fetch API)
+    fetch(formEl.action, {
+      method: 'POST',
+      body: new FormData(formEl),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        // Wait 1.6s for fluid UI feel, then show the success card
+        setTimeout(() => {
+          document.getElementById('formBody').style.display  = 'none';
+          document.getElementById('successState').style.display = 'block';
+        }, 1600);
+        formEl.reset();
+      } else {
+        alert("Submission rejected. Please try again.");
+        resetButton();
+      }
+    })
+    .catch(error => {
+      alert("Network connection failure. Try again.");
+      resetButton();
+    });
+  });
+
+  function resetButton() {
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('btnText').textContent = 'Secure my strategy slot';
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('btnIcon').style.display = 'inline-block';
   }
 </script>
 <script src="lang.js"></script>
