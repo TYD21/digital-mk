@@ -183,20 +183,7 @@
       </div>
     </div>
 
- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | Timex Digitals</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<main class="container">
-  <div class="contact-layout">
-
-    <div class="form-card" id="formCard">
+<div class="form-card" id="formCard">
       
       <form id="agencyForm" action="https://formspree.io/f/xvzyngew" method="POST">
         <div id="formBody">
@@ -308,20 +295,14 @@
     if(spin) spin.style.display = 'block';
     if(icon) icon.style.display = 'none';
 
-    // Construct JSON dictionary formatting payload object explicitly
-    const dataToSend = {
-      name: nameEl.value.trim(),
-      email: emailEl.value.trim(),
-      service: serviceEl.value,
-      message: msgEl.value.trim()
-    };
+    // Pack data natively using Formspree standard multi-part payload
+    const formData = new FormData(formEl);
 
     // Run remote asynchronous network delivery protocol
     fetch(formEl.action, {
       method: 'POST',
-      body: JSON.stringify(dataToSend),
+      body: formData,
       headers: { 
-        'Content-Type': 'application/json',
         'Accept': 'application/json' 
       }
     })
@@ -334,7 +315,7 @@
         }, 1600);
         formEl.reset();
       } else {
-        alert("Submission blocked by Formspree. Please make sure the form is active and fields contain more than 20 characters.");
+        alert("Submission blocked by Formspree. Make sure you don't have an incorrect domain restriction saved inside your Formspree dashboard settings panel!");
         resetButton();
       }
     })
