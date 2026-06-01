@@ -147,7 +147,7 @@
           <div class="trust-text">
             <strong data-key="ct_phone_label">Call us directly</strong>
             <!-- ✏️  REPLACE the number below with your real phone number -->
-            <span><a href="tel:+251932282254" class="phone-link">+251 932282254</a></span>
+            <span><a href="tel:+251911234567" class="phone-link">+251 91 123 4567</a></span>
           </div>
         </div>
         <!-- 24h response -->
@@ -183,51 +183,44 @@
       </div>
     </div>
 
-<div class="form-card" id="formCard">
-      
-      <form id="agencyForm" action="https://formspree.io/f/xvzyngew" method="POST">
-        <div id="formBody">
-          
-          <div class="field" id="f-name">
-            <label for="client-name" data-key="f_name">Full corporate name</label>
-            <input type="text" id="client-name" name="name" placeholder="John Doe (Company Name)" autocomplete="name">
-            <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          </div>
-          
-          <div class="field" id="f-email">
-            <label for="client-email" data-key="f_email">Business email address</label>
-            <input type="email" id="client-email" name="email" placeholder="name@yourcompany.com" autocomplete="email">
-            <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          </div>
-          
-          <div class="field" id="f-service">
-            <label for="service-type" data-key="f_service">Primary requirement</label>
-            <select id="service-type" name="service">
-              <option value="" data-key="f_svc_placeholder">Select an operational pillar…</option>
-              <option value="web-dev"    data-key="f_svc1">Web Development & Infrastructure</option>
-              <option value="branding"   data-key="f_svc2">Graphic Design & Brand Architecture</option>
-              <option value="marketing"  data-key="f_svc3">Ads Campaigns & Digital Optimization</option>
-              <option value="consulting" data-key="f_svc4">Enterprise Business Consulting</option>
-            </select>
-            <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          </div>
-          
-          <div class="field" id="f-msg">
-            <label for="project-notes" data-key="f_msg">Project context / scope outline</label>
-            <textarea id="project-notes" name="message" placeholder="Tell us briefly about your growth target or bottlenecks…"></textarea>
-            <div class="char-count" id="charCount">0 / 500</div>
-            <div class="valid-icon" style="top:20px;transform:none;"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          </div>
-          
-          <button class="submit-btn" id="submitBtn" type="submit">
-            <span id="btnText" data-key="f_submit">Secure my strategy slot</span>
-            <div class="spin-ring" id="spinner"></div>
-            <svg id="btnIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
+    <!-- RIGHT: form -->
+    <div class="form-card" id="formCard">
+      <div id="formBody">
+        <div class="field" id="f-name">
+          <label for="client-name" data-key="f_name">Full corporate name</label>
+          <input type="text" id="client-name" placeholder="John Doe (Company Name)" autocomplete="name">
+          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         </div>
-      </form>
+        <div class="field" id="f-email">
+          <label for="client-email" data-key="f_email">Business email address</label>
+          <input type="email" id="client-email" placeholder="name@yourcompany.com" autocomplete="email">
+          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <div class="field" id="f-service">
+          <label for="service-type" data-key="f_service">Primary requirement</label>
+          <select id="service-type">
+            <option value="" data-key="f_svc_placeholder">Select an operational pillar…</option>
+            <option value="web-dev"    data-key="f_svc1">Web Development & Infrastructure</option>
+            <option value="branding"   data-key="f_svc2">Graphic Design & Brand Architecture</option>
+            <option value="marketing"  data-key="f_svc3">Ads Campaigns & Digital Optimization</option>
+            <option value="consulting" data-key="f_svc4">Enterprise Business Consulting</option>
+          </select>
+          <div class="valid-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <div class="field" id="f-msg">
+          <label for="project-notes" data-key="f_msg">Project context / scope outline</label>
+          <textarea id="project-notes" placeholder="Tell us briefly about your growth target or bottlenecks…"></textarea>
+          <div class="char-count" id="charCount">0 / 500</div>
+          <div class="valid-icon" style="top:20px;transform:none;"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()">
+          <span id="btnText" data-key="f_submit">Secure my strategy slot</span>
+          <div class="spin-ring" id="spinner"></div>
+          <svg id="btnIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
 
-      <div class="success-state" id="successState" style="display: none;">
+      <div class="success-state" id="successState">
         <div class="success-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="success-h" data-key="success_h">You're booked in.</div>
         <p class="success-p" data-key="success_p">We've received your scope outline and will be in touch within 24 hours to confirm your strategy session.</p>
@@ -247,14 +240,11 @@
   const serviceEl = document.getElementById('service-type');
   const msgEl     = document.getElementById('project-notes');
   const charCount = document.getElementById('charCount');
-  const formEl    = document.getElementById('agencyForm');
 
   function setValid(id, ok) {
-    const el = document.getElementById(id);
-    if(el) el.classList.toggle('valid', ok);
+    document.getElementById(id).classList.toggle('valid', ok);
   }
 
-  // Interactive Live Form Checking
   nameEl.addEventListener('input',    () => setValid('f-name',    nameEl.value.trim().length > 2));
   emailEl.addEventListener('input',   () => setValid('f-email',   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)));
   serviceEl.addEventListener('change',() => setValid('f-service', serviceEl.value !== ''));
@@ -266,18 +256,14 @@
     if (l > 500) msgEl.value = msgEl.value.slice(0, 500);
   });
 
-  // Intercept the final submit event
-  formEl.addEventListener('submit', function(e) {
-    e.preventDefault(); // Stop standard page refreshing loop
-
-    // Verification evaluation
+  function handleSubmit() {
     const ok = nameEl.value.trim().length > 2
       && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)
       && serviceEl.value !== ''
       && msgEl.value.length > 20;
 
     if (!ok) {
-      if (nameEl.value.trim().length <= 2)           nameEl.focus();
+      if (nameEl.value.trim().length <= 2)                          nameEl.focus();
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) emailEl.focus();
       else if (!serviceEl.value)                                    serviceEl.focus();
       else                                                          msgEl.focus();
@@ -289,47 +275,15 @@
     const spin = document.getElementById('spinner');
     const icon = document.getElementById('btnIcon');
 
-    // Trigger visual processing states
     btn.disabled        = true;
-    if(txt) txt.textContent = 'Submitting…';
-    if(spin) spin.style.display = 'block';
-    if(icon) icon.style.display = 'none';
+    txt.textContent     = 'Submitting…';
+    spin.style.display  = 'block';
+    icon.style.display  = 'none';
 
-    // Pack data natively using Formspree standard multi-part payload
-    const formData = new FormData(formEl);
-
-    // Run remote asynchronous network delivery protocol
-    fetch(formEl.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 
-        'Accept': 'application/json' 
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        // Clear variables and transition into final layout state
-        setTimeout(() => {
-          document.getElementById('formBody').style.display  = 'none';
-          document.getElementById('successState').style.display = 'block';
-        }, 1600);
-        formEl.reset();
-      } else {
-        alert("Submission blocked by Formspree. Make sure you don't have an incorrect domain restriction saved inside your Formspree dashboard settings panel!");
-        resetButton();
-      }
-    })
-    .catch(error => {
-      alert("Network transmission failure. Please check your internet connection.");
-      resetButton();
-    });
-  });
-
-  function resetButton() {
-    document.getElementById('submitBtn').disabled = false;
-    document.getElementById('btnText').textContent = 'Secure my strategy slot';
-    document.getElementById('spinner').style.display = 'none';
-    document.getElementById('btnIcon').style.display = 'inline-block';
+    setTimeout(() => {
+      document.getElementById('formBody').style.display  = 'none';
+      document.getElementById('successState').style.display = 'block';
+    }, 1600);
   }
 </script>
 <script src="lang.js"></script>
