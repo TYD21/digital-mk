@@ -183,7 +183,21 @@
       </div>
     </div>
 
-   <div class="form-card" id="formCard">
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Timex Digitals</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="container">
+  <div class="contact-layout">
+
+    <div class="form-card" id="formCard">
+      
       <form id="agencyForm" action="https://formspree.io/f/xvzyngew" method="POST">
         <div id="formBody">
           
@@ -224,7 +238,9 @@
             <svg id="btnIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
         </div>
-      </form> <div class="success-state" id="successState">
+      </form>
+
+      <div class="success-state" id="successState" style="display: none;">
         <div class="success-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="success-h" data-key="success_h">You're booked in.</div>
         <p class="success-p" data-key="success_p">We've received your scope outline and will be in touch within 24 hours to confirm your strategy session.</p>
@@ -247,9 +263,11 @@
   const formEl    = document.getElementById('agencyForm');
 
   function setValid(id, ok) {
-    document.getElementById(id).classList.toggle('valid', ok);
+    const el = document.getElementById(id);
+    if(el) el.classList.toggle('valid', ok);
   }
 
+  // Interactive Live Form Checking
   nameEl.addEventListener('input',    () => setValid('f-name',    nameEl.value.trim().length > 2));
   emailEl.addEventListener('input',   () => setValid('f-email',   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)));
   serviceEl.addEventListener('change',() => setValid('f-service', serviceEl.value !== ''));
@@ -261,10 +279,11 @@
     if (l > 500) msgEl.value = msgEl.value.slice(0, 500);
   });
 
-  // FIX 7: Use an event listener to intercept the form submission properly
+  // Intercept the final submit event
   formEl.addEventListener('submit', function(e) {
-    e.preventDefault(); // Stop standard page reloading
+    e.preventDefault(); // Stop standard page refreshing loop
 
+    // Verification evaluation
     const ok = nameEl.value.trim().length > 2
       && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)
       && serviceEl.value !== ''
@@ -283,33 +302,44 @@
     const spin = document.getElementById('spinner');
     const icon = document.getElementById('btnIcon');
 
-    // Run UI animations instantly
+    // Trigger visual processing states
     btn.disabled        = true;
-    txt.textContent     = 'Submitting…';
-    spin.style.display  = 'block';
-    icon.style.display  = 'none';
+    if(txt) txt.textContent = 'Submitting…';
+    if(spin) spin.style.display = 'block';
+    if(icon) icon.style.display = 'none';
 
-    // FIX 8: Added the physical network delivery function (Fetch API)
+    // Construct JSON dictionary formatting payload object explicitly
+    const dataToSend = {
+      name: nameEl.value.trim(),
+      email: emailEl.value.trim(),
+      service: serviceEl.value,
+      message: msgEl.value.trim()
+    };
+
+    // Run remote asynchronous network delivery protocol
     fetch(formEl.action, {
       method: 'POST',
-      body: new FormData(formEl),
-      headers: { 'Accept': 'application/json' }
+      body: JSON.stringify(dataToSend),
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json' 
+      }
     })
     .then(response => {
       if (response.ok) {
-        // Wait 1.6s for fluid UI feel, then show the success card
+        // Clear variables and transition into final layout state
         setTimeout(() => {
           document.getElementById('formBody').style.display  = 'none';
           document.getElementById('successState').style.display = 'block';
         }, 1600);
         formEl.reset();
       } else {
-        alert("Submission rejected. Please try again.");
+        alert("Submission blocked by Formspree. Please make sure the form is active and fields contain more than 20 characters.");
         resetButton();
       }
     })
     .catch(error => {
-      alert("Network connection failure. Try again.");
+      alert("Network transmission failure. Please check your internet connection.");
       resetButton();
     });
   });
